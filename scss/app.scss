@@ -1,0 +1,128 @@
+
+
+$a: #6cc;
+$b:#ffff;
+
+
+@mixin contenedor() {
+    max-width: 1250px;
+    margin: auto auto;
+
+}
+
+@mixin flexbox($medidaJC: unset, $medidaAI: unset){
+    display: flex;
+    justify-content: $medidaJC;
+    align-items: $medidaAI;
+
+}
+
+@mixin laptopXL{
+    @media (max-width:1200px) {
+        @content
+    }
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cormorant', serif;
+    color: #ffff;
+}
+body{
+    @include contenedor();
+    background: linear-gradient(11deg,
+    rgba(0, 0, 0, 1) 44%,
+    rgba(51, 100, 102, 1)89%);
+    height: 100vh; 
+}
+
+a{
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.bold{
+    font-weight: 700px;
+}
+
+@for $i from 0 through 3{
+    h#{$i + 1}{
+        font-size: 150px - ($i*40);
+
+    }
+}
+
+header{
+    @include flexbox( space-between, center);
+    margin-top: 35px;
+    h4{
+        font-weight: 400;
+    }
+
+    nav{
+        display: flex;
+        gap: 25px;
+
+        a:hover{
+            color: #6cc;
+        }
+    }
+    .redes{
+        a{
+            @include flexbox(unset, center);
+        }
+
+        img{
+            width: 40px;
+        }
+    }
+}
+
+main{
+    @include flexbox(space-between,center )
+    margin-top:90px;
+    h3{
+        font-weight: 400;
+    }
+    h4{
+        width: 450px;
+    }
+    img{
+        width: 400px;
+        margin-right: 55px;
+    }
+}
+
+@include laptopXL(){
+    body{
+        text-align: center;
+        height: auto;
+    }
+    header{
+        flex-direction: column;
+        gap: 5px;
+
+        .redes a{
+              font-weight: 700;
+              margin: 15px 25px 0px 0px;
+        }
+        h4{
+            margin-bottom: 10px;
+            font-size: 40px;
+        }
+    }
+    
+    main{
+        margin-top: 70px;
+        flex-direction: column;
+    }
+}
+
+
